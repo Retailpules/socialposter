@@ -4,35 +4,36 @@ This system automatically fetches content from Youge (Sanyu) and publishes it to
 
 ## Setup Instructions
 
-### 1. Youge Field Mapping
-Since Youge OpenAPI doesn't provide field metadata directly, use the extraction tool to map your table fields:
-1. Push this code to your GitHub Repository.
-2. In GitHub Actions, run the **"Export Youge Field Map"** workflow.
-3. Once completed, download the `youge-field-map` artifact.
-4. Add the content of the `youge_field_map.json` to your repository under `/config/youge_field_map.json` and commit it.
+### 1. Youge Field Mapping (Pre-completed)
+> [!NOTE]
+> I have already pre-populated the field mapping for you in `config/youge_field_map.json` by inspecting your Youge API. You do **not** need to run the mapping tool manually unless you change your table structure.
 
 ### 2. GitHub Secrets
-Add the following secrets to your GitHub Repository (**Settings > Secrets and variables > Actions**):
-- `YOUGE_API_TOKEN`: Your Youge API token.
-- `YOUGE_APP_CODE`: `apdwxrbpnqhofwigxb`
-- `YOUGE_SCHEMA_CODE`: `smcpgzwm79aifk8p1y`
-- `YOUGE_VIEW_ID`: `vwapmqbrwdlfcruk7p`
-- `XHS_STORAGE_STATE`: The JSON content of your XHS login session (see below).
+Add the following secrets to your GitHub Repository (**Settings > Secrets and variables > Actions > New repository secret**):
 
-### 3. Generate XHS Storage State
-To skip CAPTHCAs and manual login in GitHub Actions, you need to provide a persistent login state:
-1. Run the project locally: `npm install`.
-2. Run a temporary script to log in and save state:
+| Secret Name | Value |
+| :--- | :--- |
+| `YOUGE_API_TOKEN` | Your Youge Bearer Token |
+| `YOUGE_APP_CODE` | `apdwxrbpnqhofwigxb` |
+| `YOUGE_SCHEMA_CODE` | `smcpgzwm79aifk8p1y` |
+| `YOUGE_VIEW_ID` | `vwapmqbrwdlfcruk7p` |
+| `XHS_STORAGE_STATE` | JSON content of your XHS session (see below) |
+
+### 3. Generate XHS Storage State (Login Session)
+To bypass login and CAPTHCAs in GitHub Actions, you must provide a saved login session:
+
+1. **Install Dependencies**: Run `npm install` in your local project folder.
+2. **Launch Login Browser**:
    ```bash
    npx playwright open --save-storage=config/xhs_storage_state.json https://creator.xiaohongshu.com/publish/publish
    ```
-3. Log in manually in the browser window that opens.
-4. Close the browser.
-5. Copy the content of `config/xhs_storage_state.json` and paste it into the GitHub Secret `XHS_STORAGE_STATE`.
+3. **Manual Login**: In the browser that opens, log in to your Xiaohongshu Creator account.
+4. **Save & Export**: Once logged in and you see the "Publish" page, close the browser.
+5. **Add to GitHub**: Open `config/xhs_storage_state.json`, copy its entire content, and paste it into the GitHub Secret `XHS_STORAGE_STATE`.
 
 ## How it Works
-1. **GitHub Actions** triggers the `Publish to Xiaohongshu` workflow on a schedule.
-2. The script calls Youge API to find one record with `Status = pending` and `ScheduledTime <= currently`.
-3. It downloads the images from the `ImageURLs` field.
-4. Playwright opens the XHS Creator Center with your session, uploads images, fills the title/content, and publishes.
-5. On success, it updates Youge status to `posted`. On failure, it sets it to `failed` with an error message.
+1. **GitHub Actions**: Triggers the `Publish to Xiaohongshu` workflow daily at 02:20 and 10:20 UTC (you can adjust this in `.github/workflows/publish.yml`).
+2. **Fetch Content**: The script queries Youge for one record with `Status = pending` and `ScheduledTime <= currently`.
+3. **Download**: Automatically downloads and manages images from the `ImageURLs` field.
+4. **Publish**: Playwright simulates a human user uploading images, typing the title/content, and clicking "Publish".
+5. **Status Update**: On success, it updates Youge status to `posted`. On failure, it sets it to `failed` with an error message.
