@@ -1,0 +1,51 @@
+{
+  "WorkflowActivity": null,
+  "CreatedTime": "2026-02-14 21:51:10",
+  "WorkflowName": null,
+  "SortKey": 1,
+  "ModifiedBy": {
+    "id": "1079",
+    "name": "Jim YANG",
+    "unitType": 4,
+    "avatar": "{{FORWARDED_BASEURL}}/v1/file/download/ug_profile_picture?filePath=24%2Fe7b0d04bac80e01997d4fc2ef22410f0.jpg&sign=YPPx4jcdv6KbDsHe%2F2FZBftihzSbk7FN9720Hmw1XwA%3D"
+  },
+  "WorkflowVersion": 0,
+  "Name": "北美家庭最近都在换这种户外折叠椅0",
+  "OwnerId": {
+    "id": "1079",
+    "name": "Jim YANG",
+    "unitType": 4,
+    "avatar": "{{FORWARDED_BASEURL}}/v1/file/download/ug_profile_picture?filePath=24%2Fe7b0d04bac80e01997d4fc2ef22410f0.jpg&sign=YPPx4jcdv6KbDsHe%2F2FZBftihzSbk7FN9720Hmw1XwA%3D"
+  },
+  "ModifiedTime": "2026-02-14 22:11:14",
+  "Version": 4,
+  "ActivityParticipants": null,
+  "Status": 3,
+  "CreatedBy": {
+    "id": "1079",
+    "name": "Jim YANG",
+    "unitType": 4,
+    "avatar": "{{FORWARDED_BASEURL}}/v1/file/download/ug_profile_picture?filePath=24%2Fe7b0d04bac80e01997d4fc2ef22410f0.jpg&sign=YPPx4jcdv6KbDsHe%2F2FZBftihzSbk7FN9720Hmw1XwA%3D"
+  },
+  "F00000AXZ": "https://example.com/img1.jpg,https://example.com/img2.jpg",
+  "ActivityCode": null,
+  "F00000AXY": "最近在亚马逊热卖的户外折叠椅，对比了3款后推荐这款。优点：轻量、耐重、易收纳。适合露营和庭院聚会。",
+  "F00000AXX": "北美家庭最近都在换这种户外折叠椅0",
+  "WorkflowCode": null,
+  "F00000AY3": "2026-02-15 10:30",
+  "F00000AY2": "W223P199791",
+  "F00000AY5": "487",
+  "F00000AY4": null,
+  "QRCode": null,
+  "F00000AY1": "pending",
+  "F00000AY0": "xhs",
+  "OwnerDeptId": [
+    {
+      "id": "1157",
+      "name": "Account Mgmt",
+      "unitType": 2
+    }
+  ],
+  "F00000B0Y": "第一阶段测试内容",
+  "ObjectId": "9fa21c1f167a4623a5d8740e341e2a2d"
+}

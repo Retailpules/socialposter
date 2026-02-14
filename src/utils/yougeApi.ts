@@ -8,7 +8,7 @@ dotenv.config();
 const BASE_URL = 'https://sanyu.cloud/openapi';
 const TOKEN = process.env.YOUGE_API_TOKEN;
 const APP_CODE = process.env.YOUGE_APP_CODE;
-const ENGINE_CODE = 'c00000000000s4-0'; // From SOP/Token
+const ENGINE_CODE = process.env.YOUGE_ENGINE_CODE || 'c00000000000s4-0'; // Fallback to default but allow override
 const SCHEMA_CODE = process.env.YOUGE_SCHEMA_CODE;
 
 const fieldMapPath = path.join(__dirname, '../../config/youge_field_map.json');

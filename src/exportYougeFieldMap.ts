@@ -12,7 +12,7 @@ async function exportFieldMap() {
     console.log('Starting Field Mapping Tool...');
     console.log(`URL: ${URL}`);
 
-    const browser = await chromium.launch({ headless: false }); // Headful to allow manual login if needed
+    const browser = await chromium.launch({ headless: process.env.HEADLESS !== 'false' }); // Headless by default for automation
     const context = await browser.newContext();
 
     // Try to set token in local storage or cookies if possible

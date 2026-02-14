@@ -15,6 +15,7 @@ Add the following secrets to your GitHub Repository (**Settings > Secrets and va
 | :--- | :--- |
 | `YOUGE_API_TOKEN` | Your Youge Bearer Token |
 | `YOUGE_APP_CODE` | `apdwxrbpnqhofwigxb` |
+| `YOUGE_ENGINE_CODE` | `c00000000000s4-0` |
 | `YOUGE_SCHEMA_CODE` | `smcpgzwm79aifk8p1y` |
 | `YOUGE_VIEW_ID` | `vwapmqbrwdlfcruk7p` |
 | `XHS_STORAGE_STATE` | JSON content of your XHS session (see below) |

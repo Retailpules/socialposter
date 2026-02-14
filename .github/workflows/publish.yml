@@ -37,6 +37,7 @@ jobs:
           NODE_ENV: production
           YOUGE_API_TOKEN: ${{ secrets.YOUGE_API_TOKEN }}
           YOUGE_APP_CODE: ${{ secrets.YOUGE_APP_CODE }}
+          YOUGE_ENGINE_CODE: ${{ secrets.YOUGE_ENGINE_CODE }}
           YOUGE_SCHEMA_CODE: ${{ secrets.YOUGE_SCHEMA_CODE }}
           YOUGE_VIEW_ID: ${{ secrets.YOUGE_VIEW_ID }}
         run: xvfb-run npm run publish
