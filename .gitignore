@@ -1,0 +1,8 @@
+node_modules
+.env
+dist
+temp_images
+config/xhs_storage_state.json
+config/youge_field_map.json
+*.log
+.gemini
