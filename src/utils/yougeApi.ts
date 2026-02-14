@@ -8,6 +8,7 @@ dotenv.config();
 const BASE_URL = 'https://sanyu.cloud/openapi';
 const TOKEN = process.env.YOUGE_API_TOKEN;
 const APP_CODE = process.env.YOUGE_APP_CODE;
+const ENGINE_CODE = 'c00000000000s4-0'; // From SOP/Token
 const SCHEMA_CODE = process.env.YOUGE_SCHEMA_CODE;
 
 const fieldMapPath = path.join(__dirname, '../../config/youge_field_map.json');
@@ -29,7 +30,9 @@ const client = axios.create({
     baseURL: BASE_URL,
     headers: {
         'Authorization': `Bearer ${TOKEN}`,
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'X-H3-AppCode': APP_CODE,
+        'X-H3-EngineCode': ENGINE_CODE
     }
 });
 
