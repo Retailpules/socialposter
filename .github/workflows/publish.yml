@@ -1,0 +1,42 @@
+name: Publish to Xiaohongshu
+
+on:
+  schedule:
+    # Runs twice a day: at 02:00 and 10:00 UTC (example)
+    # Adjust to late morning and evening in China Time (UTC+8)
+    - cron: '20 2 * * *'  # 10:20 AM CST
+    - cron: '20 10 * * *' # 18:20 PM CST
+  workflow_dispatch:
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Install Playwright Browsers
+        run: npx playwright install --with-deps chromium
+
+      - name: Prepare XHS Session
+        run: |
+          mkdir -p config
+          echo '${{ secrets.XHS_STORAGE_STATE }}' > config/xhs_storage_state.json
+
+      - name: Run Publish Script
+        env:
+          NODE_ENV: production
+          YOUGE_API_TOKEN: ${{ secrets.YOUGE_API_TOKEN }}
+          YOUGE_APP_CODE: ${{ secrets.YOUGE_APP_CODE }}
+          YOUGE_SCHEMA_CODE: ${{ secrets.YOUGE_SCHEMA_CODE }}
+          YOUGE_VIEW_ID: ${{ secrets.YOUGE_VIEW_ID }}
+        run: xvfb-run npm run publish
